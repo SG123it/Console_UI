@@ -1,0 +1,12 @@
+set(project_name console_ui)
+set(project_version 1.0)
+
+cmake_minimum_required(VERSION 3.10...3.30)
+
+project(${project_name} VERSION ${project_version})
+
+set(SRC
+    SRC/console_ui.cpp
+)
+
+add_library(${project_name} STATIC ${SRC})
