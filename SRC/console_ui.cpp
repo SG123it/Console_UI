@@ -3,12 +3,8 @@
 
 #include "console_ui.hpp"
 
-std::string console_UI::window_print(window_settings window, bool user_feedback) {
-    std::string print_text = "";
-
-    std::string title_split_line = "";
-    std::string text_split_line = "";
-
+console_UI::return_data console_UI::calculate_vars(const window_settings &window){
+    return_data return_values;
     { //вычисление text_split_line
         int max_length = 0;
         int temp_length = 0;
@@ -23,40 +19,34 @@ std::string console_UI::window_print(window_settings window, bool user_feedback)
 
         }
 
-        for (int i = 0; i < max_length; i++) text_split_line += "-";
+        return_values.text_split_line = std::string(max_length, '-');
 
     }
-    for (int i = 0; i < window.title.size(); i++) title_split_line += "-"; //вычисление title_split_line
+    return_values.title_split_line = std::string(window.title.size(), '-');
+
+    return return_values;
+
+}
+
+std::string console_UI::window_print(const window_settings &window, bool user_feedback) {
+    return_data data = calculate_vars(window);
+    
 
     //STEP1: title
-    for (int i = 0; i < ((text_split_line.size() - 1) / 2) - (window.title.size()); i++) print_text += " "; //Запись титула в центр
-    print_text += " -" + title_split_line + "- \n";
-
-    for (int i = 0; i < ((text_split_line.size() - 1) / 2) - (window.title.size()); i++) print_text += " "; //Запись титула в центр
-    print_text += "| " + window.title + " |\n";
+    for (int i = 0; i < ((data.text_split_line.size() - 1) / 2) - window.title.size(); i++) std::cout << " "; //Запись титула в центр
+    std::cout << " |" << window.title << "| \n";
 
     //STEP2: body
-    print_text += text_split_line + "\n";
-    print_text += window.text;
-    print_text += "\n" + text_split_line + "\n";
-
-
-    std::cout << print_text;
+    std::cout << data.text_split_line << "\n";
+    std::cout << window.text;
+    std::cout << "\n" << data.text_split_line << "\n";
 
     std::string user_feedback_return = "";
     if (user_feedback) {
-        while(true) {
-            user_feedback_return = "";
-            try {
-                std::cout << "\n>>> ";
-                std::cin.ignore();
-                std::getline(std::cin, user_feedback_return);
-            }
-            catch(...) {
-                continue;
-            }
-            break;
-        }
+        user_feedback_return = "";
+        std::cout << "\n>>> ";
+
+        std::getline(std::cin, user_feedback_return);
     }
 
     return user_feedback_return;
