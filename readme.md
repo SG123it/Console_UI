@@ -15,21 +15,26 @@ target_link_libraries(testapp PRIVATE console_ui)<br>
 
 <h1>main.cpp tempate</h1>
 
+```
+#include <iostream>
 
-int main() {<br>
-    console_UI::window_settings UI_settings;<br>
-    UI_settings.text = R"(<br>
-    <br>
-        Hello everyone!<br>
-    <br>
-    )";<br>
-    UI_settings.title = "HIHIHI";<br>
-    <br>
-    console_UI::window_print(UI_settings, true);<br>
-    <br>
-    return 0;<br>
+#include <console_ui.hpp>
+
+int main() {
+    console_UI::window_settings UI_settings;
+    UI_settings.text = R"(
+    
+    You can write here any length text!
+    Hello everyone!
+
+    )";
+    UI_settings.title = "Some title";
+
+    std::cout << console_UI::window_print(UI_settings, true);
+
+
 }
-
+```
 
 <br>
 
@@ -40,3 +45,6 @@ int main() {<br>
 2. cmake -B build -G "MinGW Makefiles"<br>
 3. cmake --build build<br>
 </b>
+
+<br><br>
+

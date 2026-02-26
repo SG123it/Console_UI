@@ -34,7 +34,7 @@ std::string console_UI::window_print(const window_settings &window, bool user_fe
     //STEP1: title
     int center_title_index = (data.text_split_line.size() / 2) - window.title.size();
 
-    std::cout << std::string(center_title_index, ' ');
+    std::cout << std::string(center_title_index + 1, ' ');
     std::cout << " " << std::string(window.title.size(), '-') << " " << std::endl;
 
     std::cout << std::string(center_title_index, ' ');
