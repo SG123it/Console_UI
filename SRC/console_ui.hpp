@@ -11,6 +11,7 @@ public:
 private:
     struct return_data {
         std::string title_split_line = "";
+
         std::string text_split_line = "";
     };
     static return_data calculate_vars(const window_settings &window);

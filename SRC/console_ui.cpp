@@ -31,9 +31,13 @@ console_UI::return_data console_UI::calculate_vars(const window_settings &window
 std::string console_UI::window_print(const window_settings &window, bool user_feedback) {
     return_data data = calculate_vars(window);
     
-
     //STEP1: title
-    for (int i = 0; i < ((data.text_split_line.size() - 1) / 2) - window.title.size(); i++) std::cout << " "; //Запись титула в центр
+    int center_title_index = (data.text_split_line.size() / 2) - window.title.size();
+
+    std::cout << std::string(center_title_index, ' ');
+    std::cout << " " << std::string(window.title.size(), '-') << " " << std::endl;
+
+    std::cout << std::string(center_title_index, ' ');
     std::cout << " |" << window.title << "| \n";
 
     //STEP2: body
