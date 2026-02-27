@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <numeric>
+#include <limits>
 
 #include "console_ui.hpp"
 
@@ -51,9 +53,18 @@ std::string console_UI::window_print(const window_settings &window, bool user_fe
     std::string user_feedback_return = "";
     if (user_feedback) {
         user_feedback_return = "";
-        std::cout << "\n>>> ";
+        while (true) {
 
-        std::getline(std::cin, user_feedback_return);
+            std::cout << "\n>>> ";
+            std::getline(std::cin, user_feedback_return);
+            if (std::cin.fail() || std::cin.bad() || std::cin.eof()) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max());
+                continue;
+            }
+            break;
+            
+        }
     }
 
     return user_feedback_return;
