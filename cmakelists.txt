@@ -10,3 +10,5 @@ set(SRC
 )
 
 add_library(${project_name} STATIC ${SRC})
+
+target_include_directories(${project_name} PUBLIC SRC)
