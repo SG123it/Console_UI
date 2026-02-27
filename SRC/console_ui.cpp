@@ -12,7 +12,10 @@ console_UI::return_data console_UI::calculate_vars(const window_settings &window
             
             if (sym == '\n') { //перенос строки найден
 
-                if (temp_length > max_length) max_length = temp_length;
+                if (temp_length > max_length)  {
+                    max_length = temp_length;
+                    temp_length = 0;
+                }
 
             }
             else temp_length++;
