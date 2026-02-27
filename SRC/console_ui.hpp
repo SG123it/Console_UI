@@ -3,12 +3,12 @@
 class console_UI {
 public:
     struct window_settings {
-        window_settings(std::string title, std::string text) {
+        window_settings(std::string title = "Title", std::string text = "Text") {
             this->title = title;
             this->text = text;
         }
         std::string title = "title";
-        std::string text = R"()";
+        std::string text = "Text";
     };
     static std::string window_print(const window_settings &window, bool user_feedback = false);
 
