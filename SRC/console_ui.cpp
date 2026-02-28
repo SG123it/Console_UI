@@ -4,8 +4,13 @@
 #include <limits>
 
 #include "console_ui.hpp"
+struct return_data {
+        std::string title_split_line = "";
 
-console_UI::return_data console_UI::calculate_vars(const window_settings &window){
+        std::string text_split_line = "";
+};
+
+return_data calculate_vars(const console_UI::window_settings &window){
     return_data return_values;
     { //вычисление text_split_line
         int max_length = 0;
