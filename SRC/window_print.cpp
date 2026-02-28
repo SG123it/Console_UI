@@ -61,21 +61,8 @@ std::string console_UI::window_print(const window_settings &window, bool user_fe
     std::cout << "\n" << data.text_split_line << "\n";
 
     std::string user_feedback_return = "";
-    if (user_feedback) {
-        user_feedback_return = "";
-        while (true) {
 
-            std::cout << "\n>>> ";
-            std::getline(std::cin, user_feedback_return);
-            if (std::cin.fail() || std::cin.bad() || std::cin.eof()) {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max());
-                continue;
-            }
-            break;
-            
-        }
-    }
+    
 
     return user_feedback_return;
 }

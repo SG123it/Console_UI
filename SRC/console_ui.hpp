@@ -1,5 +1,4 @@
 #include <iostream>
-
 class console_UI {
 public:
     struct window_settings {
@@ -17,4 +16,5 @@ public:
     
     static std::string window_print(const window_settings &window, bool user_feedback = false);
 
+    std::string input(unsigned int maxAttempts = 10);
 };
