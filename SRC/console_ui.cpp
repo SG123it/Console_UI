@@ -37,14 +37,15 @@ std::string console_UI::window_print(const window_settings &window, bool user_fe
     return_data data = calculate_vars(window);
     
     //STEP1: title
-    int center_title_index = (data.text_split_line.size() / 2) - window.title.size();
+    if (data.title_split_line.size() - 1 > 0) {
+        int center_title_index = (data.text_split_line.size() / 2) - window.title.size();
 
-    std::cout << std::string(center_title_index + 1, ' ');
-    std::cout << " " << std::string(window.title.size(), '-') << " " << std::endl;
+        std::cout << std::string(center_title_index + 1, ' ');
+        std::cout << " " << std::string(window.title.size(), '-') << " " << std::endl;
 
-    std::cout << std::string(center_title_index, ' ');
-    std::cout << " |" << window.title << "| \n";
-
+        std::cout << std::string(center_title_index, ' ');
+        std::cout << " |" << window.title << "| \n";
+    }
     //STEP2: body
     std::cout << data.text_split_line << "\n";
     std::cout << window.text;
