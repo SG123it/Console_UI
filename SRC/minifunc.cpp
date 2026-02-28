@@ -13,7 +13,7 @@ std::string console_UI::input(unsigned int maxAttempts) {
     for (int i = 0; i < maxAttempts; i++) {
         std::cout << "\n>>> ";
         std::getline(std::cin, input_string);
-        if (std::cin.fail() || std::cin.bad() || std::cin.eof() || std::cin.failbit) {
+        if (std::cin.fail() || std::cin.bad() || std::cin.eof()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max());
             continue;
