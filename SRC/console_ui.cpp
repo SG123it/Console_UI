@@ -23,9 +23,13 @@ console_UI::return_data console_UI::calculate_vars(const window_settings &window
             else temp_length++;
 
         }
-
+        if (max_length > window.text_split_line_maxlength) max_length = window.text_split_line_maxlength;
         return_values.text_split_line = std::string(max_length, '-');
 
+        if (window.title.size() > return_values.text_split_line.size()) {
+            int difference = (window.title.size() - return_values.text_split_line.size());
+            return_values.text_split_line += std::string(difference, '-');
+        }
     }
     return_values.title_split_line = std::string(window.title.size(), '-');
 
