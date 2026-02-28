@@ -23,7 +23,11 @@ std::string console_UI::input(unsigned int maxAttempts) {
 
     if (input_string.empty()) {
         std::cerr << "Input not success. The attempts are over";
+<<<<<<< HEAD
+    }
+=======
     };
+>>>>>>> bc0e00af3b7456775c98927fed64ce8ee086fabe
 
     return input_string;
 }
