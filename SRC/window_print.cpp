@@ -62,11 +62,7 @@ std::string console_UI::window_print(const window_settings &window, bool user_fe
 
     std::string user_feedback_return = "";
 
-<<<<<<< HEAD
     if (user_feedback) user_feedback_return = input();
-=======
-    
->>>>>>> bc0e00af3b7456775c98927fed64ce8ee086fabe
 
     return user_feedback_return;
 }
