@@ -6,7 +6,7 @@ class console_UI {
 public:
     struct window_settings {
         window_settings(std::string title = "", std::string text = "") {
-            this->title = title;
+            this->title = " " + title + " ";
             this->text = text;
         }
         std::string title = "";
