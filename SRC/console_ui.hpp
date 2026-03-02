@@ -1,4 +1,7 @@
+#pragma once
+
 #include <iostream>
+
 class console_UI {
 public:
     struct window_settings {
@@ -14,7 +17,7 @@ public:
 
 
     
-    static std::string window_print(const window_settings &window, bool user_feedback = false);
+    static std::string window_get(const window_settings &window, bool user_feedback = false);
 
     static std::string input(unsigned int maxAttempts = 10);
 };

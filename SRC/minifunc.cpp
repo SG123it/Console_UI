@@ -9,7 +9,6 @@ std::string console_UI::input(unsigned int maxAttempts) {
     if (maxAttempts <= 0) maxAttempts = 1;
 
     std::string input_string = "";
-
     for (int i = 0; i < maxAttempts; i++) {
         std::cout << "\n>>> ";
         std::getline(std::cin, input_string);
@@ -23,6 +22,7 @@ std::string console_UI::input(unsigned int maxAttempts) {
 
     if (input_string.empty()) {
         std::cerr << "Input not success. The attempts are over";
+        throw std::runtime_error("The attempts are over");
     }
 
     return input_string;
