@@ -27,3 +27,4 @@ std::string console_UI::input(unsigned int maxAttempts) {
 
     return input_string;
 }
+

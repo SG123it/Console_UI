@@ -4,15 +4,10 @@
 #include <limits>
 
 #include "console_ui.hpp"
-struct return_data {
-        std::string title_split_line = "";
-        int center_title_index = 0;
 
-        std::string text_split_line = "";
-};
-
-return_data calculate_vars(const console_UI::window_settings &window) {
+console_UI::return_data console_UI::calculate_vars(const console_UI::window_settings &window) {
     return_data return_values;
+    //-----------------
     { //вычисление text_split_line
         int max_length = 0;
         int temp_length = 0;
@@ -29,37 +24,61 @@ return_data calculate_vars(const console_UI::window_settings &window) {
             else temp_length++;
 
         }
-
         if (max_length > window.text_split_line_maxlength) max_length = window.text_split_line_maxlength;
 
         return_values.text_split_line = std::string(max_length, '-');
+    }
+    //-----------------
 
-        if (window.title.size() > return_values.text_split_line.size()) {
-            int difference = (window.title.size() - return_values.text_split_line.size());
+    return_values.center_textsplitline_index = (return_values.text_split_line.size() / 2);
+
+    //-----------------
+    if (window.title.size() + (return_values.center_textsplitline_index) > return_values.text_split_line.size()) {
+        int difference = 0;
+
+        difference = (window.title.size() + (return_values.center_textsplitline_index) - return_values.text_split_line.size());
+
+        if (difference >= 0) {
             return_values.text_split_line += std::string(difference, '-');
+            return_values.center_textsplitline_index = (return_values.text_split_line.size() / 2);
         }
     }
-        return_values.title_split_line = std::string(window.title.size(), '-');
 
-        return_values.center_title_index = (return_values.text_split_line.size() / 2);
-        if (return_values.center_title_index - (window.title.size() / 2) >= 0) return_values.center_title_index -= (window.title.size() / 2);
-
-        return return_values;
+    return_values.title_split_line = std::string(window.title.size(), '-');
+    //-----------------
+    return return_values;
 
 }
 
 std::string console_UI::window_get(const window_settings &window, bool user_feedback) {
     return_data data = calculate_vars(window);
+
+    if (window.Russian_text) {
+        data.center_textsplitline_index /= 2;
+        data.text_split_line = data.text_split_line.substr(0, (data.text_split_line.size() - 1) / 2);
+        data.title_split_line = data.title_split_line.substr(0, (data.title_split_line.size() - 1) / 2);
+    }
+
+
     //STEP1: title
-    if (!data.title_split_line.empty()) {
-        if (!data.center_title_index - window.title.size() < 0) data.center_title_index -= window.title.size();
+    if (!window.title.empty()) {
 
-        std::cout << std::endl << std::string(data.center_title_index + 1, ' ');
-        std::cout << " " << std::string(window.title.size(), '-') << " " << std::endl;
-        
+        if (data.center_textsplitline_index - static_cast<int>(window.title.size()) >= 0) {
+            std::cout << std::endl;
 
-        std::cout << std::string(data.center_title_index, ' ');
-        std::cout << " |" << window.title << "| \n";
+            std::cout << std::endl << std::string(data.center_textsplitline_index - static_cast<int>(window.title.size()), ' ');
+            std::cout << " " << std::string(static_cast<int>(window.title.size()), '-') << " ";
+
+            std::cout << std::endl;
+
+            std::cout << std::string(data.center_textsplitline_index - static_cast<int>(window.title.size()), ' ');
+            std::cout << "|" << window.title << "|\n";
+        }
+        else {
+            std::cout << std::string(data.center_textsplitline_index / 2, ' ');
+            std::cout << "|" << window.title << "|\n";
+        }
+
     }
     
     //STEP2: body
