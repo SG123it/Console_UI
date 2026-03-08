@@ -3,21 +3,21 @@
 <h1>cmakelists tempate</h1>
 
 
-set(PROJECT_VERSION 1.0)<br>
-<br>
-cmake_minimum_required(VERSION 3.10...3.30)<br>
-project(name VERSION ${PROJECT_VERSION})<br>
-<br>
-add_subdirectory(include/Console_UI)<br>
-<br>
-set(SRC<br>
-    #all files
-)<br>
-<br>
-add_executable(program ${SRC})<br>
-<br>
-target_link_libraries(program PRIVATE console_ui)<br>
-<br>
+    set(PROJECT_VERSION 1.0)
+
+    cmake_minimum_required(VERSION 3.10...3.30)
+    project(name VERSION ${PROJECT_VERSION})
+
+    add_subdirectory(include/Console_UI)
+
+    set(SRC
+        #all files
+    )
+
+    add_executable(program ${SRC})
+
+    target_link_libraries(program PRIVATE console_ui)
+
 
 
 
