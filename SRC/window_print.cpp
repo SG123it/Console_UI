@@ -60,7 +60,7 @@ std::string console_UI::window_get(const window_settings &window, bool user_feed
             SetConsoleOutputCP(1251);
         #endif
 
-        setlocale(LC_ALL, "");
+        setlocale(LC_ALL, "ru_RU.UTF-8");
     }
 
     return_data data = calculate_vars(window);
