@@ -54,22 +54,8 @@ console_UI::return_data console_UI::calculate_vars(const console_UI::window_sett
 }
 
 std::string console_UI::window_get(const window_settings &window, bool user_feedback) {
-    if (window.Russian_text) {
-        #ifdef _WIN32
-            SetConsoleCP(1251);
-            SetConsoleOutputCP(1251);
-        #endif
-
-        setlocale(LC_ALL, "ru_RU.UTF-8");
-    }
 
     return_data data = calculate_vars(window);
-
-    if (window.Russian_text) {
-        data.center_textsplitline_index /= 2;
-        data.text_split_line = data.text_split_line.substr(0, (data.text_split_line.size() - 1) / 2);
-        data.title_split_line = data.title_split_line.substr(0, (data.title_split_line.size() - 1) / 2);
-    }
 
 
     //STEP1: title
