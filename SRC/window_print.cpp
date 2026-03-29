@@ -2,6 +2,9 @@
 #include <string>
 #include <numeric>
 #include <limits>
+#ifdef _WIN32
+    #include <windows.h>
+#endif
 
 #include "console_ui.hpp"
 
@@ -51,6 +54,15 @@ console_UI::return_data console_UI::calculate_vars(const console_UI::window_sett
 }
 
 std::string console_UI::window_get(const window_settings &window, bool user_feedback) {
+    if (window.Russian_text) {
+        #ifdef _WIN32
+            SetConsoleCP(1251);
+            SetConsoleOutputCP(1251);
+        #endif
+
+        setlocale(LC_ALL, "");
+    }
+
     return_data data = calculate_vars(window);
 
     if (window.Russian_text) {
