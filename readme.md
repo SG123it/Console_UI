@@ -16,7 +16,8 @@
 
     add_executable(program ${SRC})
 
-    target_link_libraries(program PRIVATE console_ui)
+    target_link_libraries(program console_ui)
+    target_include_directories(program PUBLIC console_ui)
 
 
 
