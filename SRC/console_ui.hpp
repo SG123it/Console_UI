@@ -12,7 +12,6 @@ public:
         std::string title = "";
         std::string text = "";
         
-        bool Russian_text = false;
         unsigned short int text_split_line_maxlength = 100;
     };
 
