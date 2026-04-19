@@ -8,7 +8,16 @@
 
 #include "console_ui.hpp"
 
-console_UI::return_data console_UI::calculate_vars(const console_UI::window_settings &window) {
+//Структура необходимая для функции calculate_vars
+struct return_data {
+    std::string title_split_line = "";
+    int center_textsplitline_index = 0;
+
+    std::string text_split_line = "";
+};
+
+//Calculating size of window
+return_data calculate_vars(const console_UI::window_settings &window) {
     return_data return_values;
     //-----------------
     { //вычисление text_split_line
@@ -53,7 +62,8 @@ console_UI::return_data console_UI::calculate_vars(const console_UI::window_sett
 
 }
 
-std::string console_UI::window_get(const window_settings &window, bool user_feedback) {
+//Print window
+void console_UI::print_window(const window_settings &window) {
 
     return_data data = calculate_vars(window);
 
@@ -83,10 +93,4 @@ std::string console_UI::window_get(const window_settings &window, bool user_feed
     std::cout << data.text_split_line << "\n";
     std::cout << window.text;
     std::cout << "\n" << data.text_split_line << "\n";
-
-    std::string user_feedback_return = "";
-
-    if (user_feedback) user_feedback_return = input();
-
-    return user_feedback_return;
 }
